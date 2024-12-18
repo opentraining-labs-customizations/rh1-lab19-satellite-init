@@ -1,0 +1,12 @@
+---
+galaxy_info:
+  role_name: rh1-lab19-satellite-init
+  author: Skip Wyatt (awyatt@redhat.com)
+  description: RH1 Lab19 Satellite lab initialization playbook
+  license: GPLv3
+  min_ansible_version: "2.9"
+  platforms: []
+  galaxy_tags:
+  - workshop
+dependencies: []
+
