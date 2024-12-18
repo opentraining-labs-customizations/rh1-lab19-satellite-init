@@ -9,4 +9,6 @@ galaxy_info:
   galaxy_tags:
   - workshop
 dependencies: []
+collections:
+  - redhat.satellite
 

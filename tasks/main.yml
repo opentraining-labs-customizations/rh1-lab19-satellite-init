@@ -1,20 +1,17 @@
 ---
 - name: create lifecycle environments for the Satellite Server
-  hosts: satellite
-  roles:
-    - role: redhat.satellite.lifecycle_environments
-      vars:
-        satellite_server_url: "{{ workshop_satellite_url }}"
-        satellite_username: "{{ workshop_satellite_user_name }}"
-        satellite_password: "{{ workshop_satellite_user_password }}"
-        satellite_organization: "Default Organization"
-        satellite_lifecycle_environments:
-          - name: "Development"
-            prior: "Library"
-          - name: "Test"
-            prior: "Development"
-          - name: "Production"
-            prior: "Test"
+  redhat.satellite.lifecycle_environment:
+    satellite_server_url: "{{ workshop_satellite_url }}"
+    satellite_username: "{{ workshop_satellite_user_name }}"
+    satellite_password: "{{ workshop_satellite_user_password }}"
+    satellite_organization: "Default Organization"
+    satellite_lifecycle_environments:
+      - name: "Development"
+        prior: "Library"
+      - name: "Test"
+        prior: "Development"
+      - name: "Production"
+        prior: "Test"
 
   post_tasks:
   - name: "Enable Directory Server RPMs repositories with label"
