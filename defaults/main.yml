@@ -1,3 +1,0 @@
-lab_satellite_url: "{{ pert_satellite_external_fqdn }}"
-lab_satellite_user_name: "{{ pert_satellite_user_name }}"
-lab_satellite_user_password: "{{ pert_satellite_user_password }}"
