@@ -1,7 +1,7 @@
 ---
 - name: create lifecycle environments for the Satellite Server
   redhat.satellite.lifecycle_environment:
-    server_url: "{{ satellite_url }}"
+    server_url: "https://{{ satellite_url }}"
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
     organization: "Default Organization"
@@ -12,7 +12,7 @@
   redhat.satellite.repository_set:
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
-    server_url: "{{ satellite_url }}"
+    server_url: "https://{{ satellite_url }}"
     organization: "Default Organization"
     label: dirsrv-12-for-rhel-9-x86_64-rpms
     repositories:
@@ -23,7 +23,7 @@
   redhat.satellite.repository:
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
-    server_url: "{{ satellite_url }}"
+    server_url: "https://{{ satellite_url }}"
     name: "Red Hat Directory Server 12 for RHEL 9 x86_64 RPMs 9"
     state: present
     content_type: "yum"
@@ -36,7 +36,7 @@
   redhat.satellite.repository_sync:
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
-    server_url: "{{ satellite_url }}"
+    server_url: "https://{{ satellite_url }}"
     repository: "Red Hat Directory Server 12 for RHEL 9 x86_64 RPMs 9"
     product: "Red Hat Directory Server"
     organization: "Default Organization"
@@ -45,7 +45,7 @@
   redhat.satellite.smart_proxy:
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
-    server_url: "{{ satellite_url }}"
+    server_url: "https://{{ satellite_url }}"
     name: "capsule.{{ subdomain }}"
     url: "https://capsule.{{ subdomain }}:9090"
     download_policy: "on_demand"
@@ -63,7 +63,7 @@
   redhat.satellite.content_view:
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
-    server_url: "{{ satellite_url }}"
+    server_url: "https://{{ satellite_url }}"
     name: "RHEL 9"
     organization: "Default Organization"
     repositories:
@@ -78,7 +78,7 @@
   redhat.satellite.content_view_version:
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
-    server_url: "{{ satellite_url }}"
+    server_url: "https://{{ satellite_url }}"
     content_view: "RHEL 9"
     organization: "Default Organization"
     version: "1.0"
@@ -91,7 +91,7 @@
   redhat.satellite.activation_key:
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
-    server_url: "{{ satellite_url }}"
+    server_url: https://{{ satellite_url }}"
     name: "client_key"
     organization: "Default Organization"
     lifecycle_environment: "Development"
@@ -109,7 +109,7 @@
       - "Default Organization"
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
-    server_url: "{{ satellite_url }}"
+    server_url: "https://{{ satellite_url }}"
     state: present
 
 - name: Create Subnet for Lab
@@ -132,5 +132,5 @@
       - "Default Location"
     username: "{{ satellite_user_name }}"
     password: "{{ satellite_user_password }}"
-    server_url: "{{ satellite_url }}"
+    server_url: "https://{{ satellite_url }}"
     state: present
