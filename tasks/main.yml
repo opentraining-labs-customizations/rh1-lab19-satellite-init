@@ -1,7 +1,7 @@
 ---
 - name: create lifecycle environments for the Satellite Server
   redhat.satellite.lifecycle_environment:
-    server_url: "{{ workshop_satellite_url }}"
+    server_url: "https://{{ workshop_satellite_url }}"
     username: "{{ workshop_satellite_user_name }}"
     password: "{{ workshop_satellite_user_password }}"
     organization: "Default Organization"
