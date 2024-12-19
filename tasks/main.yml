@@ -1,10 +1,10 @@
 ---
 - name: create lifecycle environments for the Satellite Server
   redhat.satellite.lifecycle_environment:
-    satellite_server_url: "{{ workshop_satellite_url }}"
-    satellite_username: "{{ workshop_satellite_user_name }}"
-    satellite_password: "{{ workshop_satellite_user_password }}"
-    satellite_organization: "Default Organization"
+    server_url: "{{ workshop_satellite_url }}"
+    username: "{{ workshop_satellite_user_name }}"
+    password: "{{ workshop_satellite_user_password }}"
+    organization: "Default Organization"
     satellite_lifecycle_environments:
       - name: "Development"
         prior: "Library"
