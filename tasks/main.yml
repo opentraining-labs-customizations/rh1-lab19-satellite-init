@@ -91,7 +91,7 @@
   redhat.satellite.activation_key:
     username: "{{ lab_satellite_user_name }}"
     password: "{{ lab_satellite_user_password }}"
-    server_url: {{ lab_satellite_url }}"
+    server_url: "{{ lab_satellite_url }}"
     name: "client_key"
     organization: "Default Organization"
     lifecycle_environment: "Development"
