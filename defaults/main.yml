@@ -1,1 +1,2 @@
-workshop_satellite_user_name: admin
+workshop_satellite_user_name: "{{ pert_satellite_user_name }}"
+workshop_satellite_user_password: "{{ pert_satellite_user_password }}"
