@@ -5,7 +5,7 @@
     username: "{{ workshop_satellite_user_name }}"
     password: "{{ workshop_satellite_user_password }}"
     organization: "Default Organization"
-    satellite_lifecycle_environments:
+    lifecycle_environments:
       - name: "Development"
         prior: "Library"
       - name: "Test"
