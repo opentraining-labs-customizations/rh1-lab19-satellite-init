@@ -1,0 +1,7 @@
+---
+- name: Set search preference in resolv.conf
+  ansible.builtin.replace:
+    path: /etc/resolv.conf
+    regexp: 'search'
+    replace: 'search {{ guid }}.internal'
+
