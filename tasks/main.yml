@@ -1,4 +1,4 @@
 ---
-#- include_tasks: fix-name-resolution.yml
+- include_tasks: fix-name-resolution.yml
 #- include_tasks: generate-vars-and-inventory-file.yml
 - include_tasks: initialize-satellite.yml 
