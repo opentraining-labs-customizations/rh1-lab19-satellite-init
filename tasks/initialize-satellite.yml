@@ -1,36 +1,36 @@
 ---
 - name: create Development lifecycle environment for the Satellite Server
   redhat.satellite.lifecycle_environment:
-    server_url: "{{ workshop_satellite_url }}"
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
     organization: "Default Organization"
     name: "Development"
     prior: "Library"
 
 - name: create Test lifecycle environment for the Satellite Server
   redhat.satellite.lifecycle_environment:
-    server_url: "{{ workshop_satellite_url }}"
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
     organization: "Default Organization"
     name: "Test"
     prior: "Development"
 
 - name: create Production lifecycle environment for the Satellite Server
   redhat.satellite.lifecycle_environment:
-    server_url: "{{ workshop_satellite_url }}"
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
     organization: "Default Organization"
     name: "Production"
     prior: "Test"
 
 - name: "Enable Directory Server RPMs repositories with label"
   redhat.satellite.repository_set:
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
-    server_url: "{{ workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
     organization: "Default Organization"
     label: dirsrv-12-for-rhel-9-x86_64-rpms
     repositories:
@@ -39,9 +39,9 @@
 
 - name: "Enable the Directory Server Repo and set to Immediate"
   redhat.satellite.repository:
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
-    server_url: "{{ workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
     name: "Red Hat Directory Server 12 for RHEL 9 x86_64 RPMs 9"
     state: present
     content_type: "yum"
@@ -52,20 +52,20 @@
 
 - name: "Sync the Directory Server Repo"
   redhat.satellite.repository_sync:
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
-    server_url: "{{ workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
     repository: "Red Hat Directory Server 12 for RHEL 9 x86_64 RPMs 9"
     product: "Red Hat Directory Server"
     organization: "Default Organization"
 
 - name: "Update the Caspule settings"
   redhat.satellite.smart_proxy:
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
-    server_url: "{{ workshop_satellite_url }}"
-    name: "capsule.{{ subdomain }}"
-    url: "capsule.{{ subdomain }}:9090"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
+    name: "capsule.{{ var_subdomain }}"
+    url: "capsule.{{ var_subdomain }}:9090"
     download_policy: "on_demand"
     lifecycle_environments:
       - "Development"
@@ -79,9 +79,9 @@
 
 - name: "Create or update Red Hat content view"
   redhat.satellite.content_view:
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
-    server_url: "{{ workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
     name: "RHEL 9"
     organization: "Default Organization"
     repositories:
@@ -94,9 +94,9 @@
   
 - name: "Publish Red Hat Content View"
   redhat.satellite.content_view_version:
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
-    server_url: "{{ workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
     content_view: "RHEL 9"
     organization: "Default Organization"
     version: "1.0"
@@ -107,9 +107,9 @@
 
 - name: "Create client activation key"
   redhat.satellite.activation_key:
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
-    server_url: "{{ workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
     name: "client_key"
     organization: "Default Organization"
     lifecycle_environment: "Development"
@@ -119,15 +119,15 @@
 
 - name: Create Domain for Lab
   redhat.satellite.domain:
-    name: "{{ subdomain_internal }}"
+    name: "{{ var_subdomain_internal }}"
     description: "Internal Lab Domain"
     locations:
       - "Default Location"
     organizations:
       - "Default Organization"
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
-    server_url: "{{ workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
     state: present
 
 - name: Create Subnet for Lab
@@ -139,16 +139,16 @@
     gateway: "192.168.0.1"
     boot_mode: "dhcp"
     remote_execution_proxies:
-      - "satellite.{{ subdomain }}"
-      - "capsule.{{ subdomain }}"
+      - "satellite.{{ var_subdomain }}"
+      - "capsule.{{ var_subdomain }}"
     mtu: 9001
     domains:
-      - "{{ subdomain_internal }}"
+      - "{{ var_subdomain_internal }}"
     organizations:
       - "Default Organization"
     locations:
       - "Default Location"
-    username: "{{ workshop_satellite_user_name }}"
-    password: "{{ workshop_satellite_user_password }}"
-    server_url: "{{ workshop_satellite_url }}"
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "{{ var_workshop_satellite_url }}"
     state: present

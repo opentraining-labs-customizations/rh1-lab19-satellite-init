@@ -3,5 +3,5 @@
   ansible.builtin.replace:
     path: /etc/resolv.conf
     regexp: 'search'
-    replace: 'search {{ guid }}.internal'
+    replace: 'search {{ var_guid }}.internal'
 
