@@ -1,7 +1,7 @@
 ---
 - name: create Development lifecycle environment for the Satellite Server
   redhat.satellite.lifecycle_environment:
-    server_url: "https://{{ workshop_satellite_url }}"
+    server_url: "{{ workshop_satellite_url }}"
     username: "{{ workshop_satellite_user_name }}"
     password: "{{ workshop_satellite_user_password }}"
     organization: "Default Organization"
@@ -10,7 +10,7 @@
 
 - name: create Test lifecycle environment for the Satellite Server
   redhat.satellite.lifecycle_environment:
-    server_url: "https://{{ workshop_satellite_url }}"
+    server_url: "{{ workshop_satellite_url }}"
     username: "{{ workshop_satellite_user_name }}"
     password: "{{ workshop_satellite_user_password }}"
     organization: "Default Organization"
@@ -19,7 +19,7 @@
 
 - name: create Production lifecycle environment for the Satellite Server
   redhat.satellite.lifecycle_environment:
-    server_url: "https://{{ workshop_satellite_url }}"
+    server_url: "{{ workshop_satellite_url }}"
     username: "{{ workshop_satellite_user_name }}"
     password: "{{ workshop_satellite_user_password }}"
     organization: "Default Organization"
@@ -30,7 +30,7 @@
   redhat.satellite.repository_set:
     username: "{{ workshop_satellite_user_name }}"
     password: "{{ workshop_satellite_user_password }}"
-    server_url: "https://{{ workshop_satellite_url }}"
+    server_url: "{{ workshop_satellite_url }}"
     organization: "Default Organization"
     label: dirsrv-12-for-rhel-9-x86_64-rpms
     repositories:
@@ -41,7 +41,7 @@
   redhat.satellite.repository:
     username: "{{ workshop_satellite_user_name }}"
     password: "{{ workshop_satellite_user_password }}"
-    server_url: "https://{{ workshop_satellite_url }}"
+    server_url: "{{ workshop_satellite_url }}"
     name: "Red Hat Directory Server 12 for RHEL 9 x86_64 RPMs 9"
     state: present
     content_type: "yum"
@@ -54,7 +54,7 @@
   redhat.satellite.repository_sync:
     username: "{{ workshop_satellite_user_name }}"
     password: "{{ workshop_satellite_user_password }}"
-    server_url: "https://{{ workshop_satellite_url }}"
+    server_url: "{{ workshop_satellite_url }}"
     repository: "Red Hat Directory Server 12 for RHEL 9 x86_64 RPMs 9"
     product: "Red Hat Directory Server"
     organization: "Default Organization"
