@@ -69,20 +69,6 @@
       - releasever: "9"
     state: enabled
 
-- name: "Enable the Directory Server Repo and set to on_demand"
-  redhat.satellite.repository:
-    username: "{{ var_workshop_satellite_user_name }}"
-    password: "{{ var_workshop_satellite_user_password }}"
-    server_url: "https://{{ var_workshop_satellite_url }}"
-    name: "Red Hat Directory Server 12 for RHEL 9 x86_64 RPMs 9"
-    state: present
-    content_type: "yum"
-    product: "Red Hat Directory Server"
-    organization: "Default Organization"
-    url: "https://cdn.redhat.com/content/dist/rhel9/9/x86_64/resilientstorage/os"
-    #download_policy: immediate
-    download_policy: on_demand
-
 #Sync Repos
 - name: "Sync the Directory Server Repo"
   redhat.satellite.repository_sync:
@@ -138,6 +124,19 @@
     task: "{{ item }}"
     timeout: 900 
   loop: "{{ tasks.resources | map(attribute='id') | list }}"
+
+- name: "Enable the Directory Server Repo and set to Immmediate"
+  redhat.satellite.repository:
+    username: "{{ var_workshop_satellite_user_name }}"
+    password: "{{ var_workshop_satellite_user_password }}"
+    server_url: "https://{{ var_workshop_satellite_url }}"
+    name: "Red Hat Directory Server 12 for RHEL 9 x86_64 RPMs 9"
+    state: present
+    content_type: "yum"
+    product: "Red Hat Directory Server"
+    organization: "Default Organization"
+    url: "https://cdn.redhat.com/content/dist/rhel9/9/x86_64/resilientstorage/os"
+    download_policy: immediate
 
 #Ensure Capsule will autosync after CV publish/promote    
 - name: Set Capsule to sync on LCE change
