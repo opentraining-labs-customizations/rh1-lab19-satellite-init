@@ -2,16 +2,12 @@
 - name: Create values.yml file using template
   ansible.builtin.template:
     src: values.j2
-    dest: /tmp/values.yml
-    owner: root
-    group: root
+    dest: /tmp/vars.yml
     mode: 0644
 
 - name: Create hosts file using template
   ansible.builtin.template:
     src: hosts.j2
     dest: /tmp/hosts
-    owner: root
-    group: root
     mode: 0644
 
