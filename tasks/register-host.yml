@@ -1,46 +1,46 @@
 - name: Become block
   become: true
   block:
-      - name: Remove all katello-ca-consumer RPMs
-        ansible.builtin.shell: >-
-          dnf remove katello-ca-consumer-* -y
-        delegate_to: "{{ _hostname_ }}"
+    - name: Remove all katello-ca-consumer RPMs
+      ansible.builtin.shell: >-
+        dnf remove katello-ca-consumer-* -y
+      delegate_to: "{{ _hostname_ }}"
 
-      - name: Remove old registration
-        ansible.builtin.shell: >-
-          subscription-manager clean
-        delegate_to: "{{ _hostname_ }}"
+    - name: Remove old registration
+      ansible.builtin.shell: >-
+        subscription-manager clean
+      delegate_to: "{{ _hostname_ }}"
 
-    #Install katello-ca-consumer RPM
-      - name: Install katello-ca-consumer RPM
-        ansible.builtin.shell: >-
-          dnf install 
-          http://capsule.{{ subdomain_internal }}/pub/katello-ca-consumer-latest.noarch.rpm
-          -y
-        delegate_to: "{{ _hostname_ }}"
+  #Install katello-ca-consumer RPM
+    - name: Install katello-ca-consumer RPM
+      ansible.builtin.shell: >-
+        dnf install 
+        http://capsule.{{ subdomain_internal }}/pub/katello-ca-consumer-latest.noarch.rpm
+        -y
+      delegate_to: "{{ _hostname_ }}"
 
-    #Purge old Katello fact from Old Satellite
-      - name: Purge RHSM Katello facts
-        ansible.builtin.shell: >-
-          sudo rm /etc/rhsm/facts/katello* -f
-        delegate_to: "{{ _hostname_ }}"
+  #Purge old Katello fact from Old Satellite
+    - name: Purge RHSM Katello facts
+      ansible.builtin.shell: >-
+        sudo rm /etc/rhsm/facts/katello* -f
+      delegate_to: "{{ _hostname_ }}"
 
-    #Register Node to the Capsule server to use RHEL9-CV content view
-      - name: Register Nodes to Capsule
-        ansible.builtin.shell: >-
-          subscription-manager register
-          --username {{workshop_satellite_user_name}}
-          --password {{workshop_satellite_user_password}}
-          --org "Default_Organization"
-          --environments Development/RHEL9-CV
-          --force
-        delegate_to: "{{ _hostname_ }}"
+  #Register Node to the Capsule server to use RHEL9-CV content view
+    - name: Register Nodes to Capsule
+      ansible.builtin.shell: >-
+        subscription-manager register
+        --username {{workshop_satellite_user_name}}
+        --password {{workshop_satellite_user_password}}
+        --org "Default_Organization"
+        --environments Development/RHEL9-CV
+        --force
+      delegate_to: "{{ _hostname_ }}"
 
-    #Enable the BaseOS, Appstream, and Satellite-Client repos
-      - name: Enable BaseOS, Appstream, Satellite-Client repos on Nodes
-        ansible.builtin.shell: >-
-          subscription-manager repos
-          --enable rhel-9-for-x86_64-appstream-rpms
-          --enable rhel-9-for-x86_64-baseos-rpms
-          --enable satellite-client-6-for-rhel-9-x86_64-rpms
-        delegate_to: "{{ _hostname_ }}"
+  #Enable the BaseOS, Appstream, and Satellite-Client repos
+    - name: Enable BaseOS, Appstream, Satellite-Client repos on Nodes
+      ansible.builtin.shell: >-
+        subscription-manager repos
+        --enable rhel-9-for-x86_64-appstream-rpms
+        --enable rhel-9-for-x86_64-baseos-rpms
+        --enable satellite-client-6-for-rhel-9-x86_64-rpms
+      delegate_to: "{{ _hostname_ }}"
