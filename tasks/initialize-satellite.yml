@@ -47,7 +47,7 @@
     content_type: "yum"
     product: "Red Hat Directory Server"
     organization: "Default Organization"
-    url: "cdn.redhat.com/content/dist/rhel9/9/x86_64/resilientstorage/os"
+    url: "https://cdn.redhat.com/content/dist/rhel9/9/x86_64/resilientstorage/os"
     download_policy: immediate
 
 - name: "Sync the Directory Server Repo"
@@ -65,7 +65,7 @@
     password: "{{ var_workshop_satellite_user_password }}"
     server_url: "https://{{ var_workshop_satellite_url }}"
     name: "capsule.{{ var_subdomain }}"
-    url: "capsule.{{ var_subdomain }}:9090"
+    url: "https://capsule.{{ var_subdomain }}:9090"
     download_policy: "on_demand"
     lifecycle_environments:
       - "Development"
@@ -137,7 +137,7 @@
     network: "192.168.0.0"
     mask: "255.255.255.254"
     gateway: "192.168.0.1"
-    boot_mode: "dhcp"
+    boot_mode: "DHCP"
     remote_execution_proxies:
       - "satellite.{{ var_subdomain }}"
       - "capsule.{{ var_subdomain }}"
