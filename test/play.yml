@@ -1,0 +1,8 @@
+---
+- name: manual run
+  hosts: satellite
+  vars_files:
+    - vars.yml
+  roles:
+    - rh1-lab19-satellite-init
+
