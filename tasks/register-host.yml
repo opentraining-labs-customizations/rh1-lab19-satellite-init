@@ -35,7 +35,13 @@
         --environments Development/RHEL9-CV
         --force
       delegate_to: "{{ _hostname_ }}"
-
+ 
+ #Enable RHSM manage repos
+    - name: RHSM config manage_repos enabled
+      ansible.builtin.shell: >-
+        subscription-manager config --rhsm.manage_repos 1
+      delegate_to: "{{ _hostname_ }}"
+      
   #Enable the BaseOS, Appstream, and Satellite-Client repos
     - name: Enable BaseOS, Appstream, Satellite-Client repos on Nodes
       ansible.builtin.shell: >-
