@@ -8,3 +8,4 @@
   loop: "{{ rh1_lab19_satellite_init_hosts }}"
   loop_control:
     loop_var: _hostname_
+- include_tasks: get-lab-repo.yml

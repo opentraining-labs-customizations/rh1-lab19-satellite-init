@@ -1,0 +1,5 @@
+- name: Fetch lab repo from github
+  become: true
+  ansible.builtin.git:
+    repo: https://github.com/opentraining-labs-customizations/rh1-lab19-satellite.git
+    dest: /root/rh1-lab19-satellite
