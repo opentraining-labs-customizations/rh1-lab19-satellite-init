@@ -92,7 +92,7 @@
     product: "Red Hat Directory Server"
     organization: "Default Organization"
 
-- name: "Sync the Directory Server Repo"
+- name: "Sync the RHEL BaseOS Server Repo"
   redhat.satellite.repository_sync:
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
@@ -101,7 +101,7 @@
     product: "Red Hat Enterprise Linux for x86_64"
     organization: "Default Organization"
 
-- name: "Sync the Directory Server Repo"
+- name: "Sync the RHEL AppStream Server Repo"
   redhat.satellite.repository_sync:
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
@@ -110,7 +110,7 @@
     product: "Red Hat Enterprise Linux for x86_64"
     organization: "Default Organization"
 
-- name: "Sync the Directory Server Repo"
+- name: "Sync the Satellite client Server Repo"
   redhat.satellite.repository_sync:
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
