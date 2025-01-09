@@ -166,7 +166,7 @@
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
     server_url: "https://{{ var_workshop_satellite_url }}"
-    name: "RHEL 9"
+    name: "RHEL9-CV"
     organization: "Default Organization"
     repositories:
       - name: 'Red Hat Enterprise Linux 9 for x86_64 - AppStream RPMs 9'
@@ -181,7 +181,7 @@
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
     server_url: "https://{{ var_workshop_satellite_url }}"
-    content_view: "RHEL 9"
+    content_view: "RHEL9-CV"
     organization: "Default Organization"
     version: "1.0"
     lifecycle_environments:
@@ -197,7 +197,7 @@
     name: "client_key"
     organization: "Default Organization"
     lifecycle_environment: "Development"
-    content_view: 'RHEL 9'
+    content_view: 'RHEL9-CV'
     auto_attach: true
     release_version: 9
 
