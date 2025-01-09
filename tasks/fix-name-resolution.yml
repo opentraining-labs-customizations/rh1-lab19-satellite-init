@@ -1,5 +1,6 @@
 ---
 - name: Set search preference in resolv.conf
+  become: true
   ansible.builtin.replace:
     path: /etc/resolv.conf
     regexp: 'search'

@@ -69,7 +69,7 @@
       - releasever: "9"
     state: enabled
 
-- name: "Enable the Directory Server Repo and set to Immediate"
+- name: "Enable the Directory Server Repo and set to on_demand"
   redhat.satellite.repository:
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
@@ -80,7 +80,8 @@
     product: "Red Hat Directory Server"
     organization: "Default Organization"
     url: "https://cdn.redhat.com/content/dist/rhel9/9/x86_64/resilientstorage/os"
-    download_policy: immediate
+    #download_policy: immediate
+    download_policy: on_demand
 
 #Sync Repos
 - name: "Sync the Directory Server Repo"
