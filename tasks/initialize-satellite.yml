@@ -30,7 +30,7 @@
   redhat.satellite.repository_set:
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
-    server_url: "{{ var_workshop_satellite_url }}"
+    server_url: "https://{{ var_workshop_satellite_url }}"
     organization: "Default Organization"
     label: satellite-client-6-for-rhel-9-x86_64-rpms
     all_repositories: true
@@ -40,7 +40,7 @@
   redhat.satellite.repository_set:
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
-    server_url: "{{ var_workshop_satellite_url }}"
+    server_url: "https://{{ var_workshop_satellite_url }}"
     organization: "Default Organization"
     label: rhel-9-for-x86_64-baseos-rpms
     repositories:
@@ -51,7 +51,7 @@
   redhat.satellite.repository_set:
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
-    server_url: "{{ var_workshop_satellite_url }}"
+    server_url: "https://{{ var_workshop_satellite_url }}"
     organization: "Default Organization"
     label: rhel-9-for-x86_64-appstream-rpms
     repositories:
@@ -122,7 +122,7 @@
 # Check for running sync tasks and pause until sync is complete
 - name: Search for running repo/Capsule sync tasks and CV Publish tasks
   redhat.satellite.resource_info:
-    server_url: "{{ var_workshop_satellite_url }}"
+    server_url: "https://{{ var_workshop_satellite_url }}"
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
     resource: foreman_tasks
@@ -131,7 +131,7 @@
 
 - name: Wait for all found tasks to finish
   redhat.satellite.wait_for_task:
-    server_url: "{{ var_workshop_satellite_url }}"
+    server_url: "https://{{ var_workshop_satellite_url }}"
     username: "{{ var_workshop_satellite_user_name }}"
     password: "{{ var_workshop_satellite_user_password }}"
     task: "{{ item }}"
