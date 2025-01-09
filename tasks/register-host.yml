@@ -15,7 +15,7 @@
     - name: Install katello-ca-consumer RPM
       ansible.builtin.shell: >-
         dnf install 
-        http://capsule.{{ subdomain_internal }}/pub/katello-ca-consumer-latest.noarch.rpm
+        http://capsule.{{ var_subdomain_internal }}/pub/katello-ca-consumer-latest.noarch.rpm
         -y
       delegate_to: "{{ _hostname_ }}"
 
@@ -29,8 +29,8 @@
     - name: Register Nodes to Capsule
       ansible.builtin.shell: >-
         subscription-manager register
-        --username {{workshop_satellite_user_name}}
-        --password {{workshop_satellite_user_password}}
+        --username {{var_workshop_satellite_user_name}}
+        --password {{var_workshop_satellite_user_password}}
         --org "Default_Organization"
         --environments Development/RHEL9-CV
         --force
