@@ -1,6 +1,11 @@
 ---
 - include_tasks: fix-name-resolution.yml
-- include_tasks: generate-vars-and-inventory-file.yml
+- name: Include generate-vars-and-inventory-file.yml
+  ansible.builtin.include_tasks:
+    file: generate-vars-and-inventory-file.yml
+  loop: "{{ rh1_lab19_hosts_satellite_bastion }}"
+  loop_control:
+    loop_var: _hostname_
 - include_tasks: initialize-satellite.yml 
 - name: Include register host tasks
   ansible.builtin.include_tasks:

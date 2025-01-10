@@ -4,10 +4,11 @@
     src: values.j2
     dest: /tmp/vars.yml
     mode: 0644
+  delegate_to: "{{ _hostname_ }}"
 
 - name: Create hosts file using template
   ansible.builtin.template:
     src: hosts.j2
     dest: /tmp/hosts
     mode: 0644
-
+  delegate_to: "{{ _hostname_ }}"
