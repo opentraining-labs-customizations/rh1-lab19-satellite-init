@@ -14,3 +14,9 @@
   loop_control:
     loop_var: _hostname_
 - include_tasks: get-lab-repo.yml
+- name: Register satellite to CDN
+  ansible.builtin.include_tasks:
+    file: satellite-register.yml
+  loop: "{{ rh1_lab19_hosts_satellites }}"
+  loop_control:
+    loop_var: _hostname_

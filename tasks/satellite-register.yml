@@ -1,0 +1,12 @@
+---
+- name: Download binary file to register the satellite host
+  ansible.builtin.get_url:
+    url: https://redhat-one-2025.s3.us-east-1.amazonaws.com/lab19/satellite-subscribe.sh
+    dest: /tmp/satellite-subscribe.sh
+    mode: '0755'
+  delegate_to: "{{ _hostname_ }}"
+
+- name: Execute biary script to register the satellite host
+  ansible.builtin.shell: >-
+    /tmp/satellite-subscribe.sh
+  delegate_to: "{{ _hostname_ }}"
