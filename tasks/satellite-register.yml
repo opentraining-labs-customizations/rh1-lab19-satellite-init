@@ -19,6 +19,7 @@
     src: /tmp/satellite-subscribe.zip
     dest: /tmp/
     remote_src: yes
+    mode: 0755
   ignore_errors: True
   
 - name: Execute biary script to register the satellite host
