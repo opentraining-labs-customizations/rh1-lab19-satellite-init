@@ -1,25 +1,10 @@
 ---
 - name: Download binary file to register the satellite host
   ansible.builtin.get_url:
-    url: https://redhat-one-2025.s3.us-east-1.amazonaws.com/lab19/satellite-subscribe.sh
+    url: https://raw.githubusercontent.com/opentraining-labs-customizations/rh1-lab19-binary/refs/heads/main/satellite-subscribe.sh
     dest: /tmp/satellite-subscribe.sh
     mode: '0755'
   delegate_to: "{{ _hostname_ }}"
-  ignore_errors: True
-
-- name: Download zip archive file to register the satellite host
-  ansible.builtin.get_url:
-    url: https://redhat-one-2025.s3.us-east-1.amazonaws.com/lab19/satellite-subscribe.zip
-    dest: /tmp/satellite-subscribe.zip
-    mode: '0644'
-  ignore_errors: True
-
-- name: Unarchive the file
-  ansible.builtin.unarchive:
-    src: /tmp/satellite-subscribe.zip
-    dest: /tmp/
-    remote_src: yes
-    mode: 0755
   ignore_errors: True
   
 - name: Execute biary script to register the satellite host
